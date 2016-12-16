@@ -11,6 +11,11 @@ public class Queue<Item>{
 		return first == null;
 	}
 
+	public Item peek(){
+		if(isEmpty()) return null;
+		return first.item;
+	}
+
 	public void enqueue(Item item){
 		Node oldlast = last;
 		last = new Node();
