@@ -9,6 +9,8 @@ public class Heap{
 			exch(a, 0, i);
 			maxHeapfy(a, i, 1);
 		}
+
+		assert isSorted(a);
 	}
 	private static void buildHeap(Comparable[] a){
 		int n = a.length;
@@ -37,5 +39,10 @@ public class Heap{
 		Comparable aux = a[i];
 		a[i] = a[j];
 		a[j] = aux;
+	}
+	private static boolean isSorted(Comparable[] a){
+		for(int i = 0; i < a.length - 1; i++)
+			if(more(a[i], a[i+1])) return false;
+		return true;
 	}
 }

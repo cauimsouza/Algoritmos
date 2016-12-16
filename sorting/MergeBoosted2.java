@@ -2,18 +2,18 @@
 	Created in: December 15, 2016
 	Author: Cauim de Souza Lima (cauimsouza@gmail.com)
 */
-public class Merge{
+public class MergeBoosted2{
 	public static void sort(Comparable[] a){
 		Comparable[] aux = new Comparable[a.length];
+		for(int i = 0; i < a.length; i++) aux[i] = a[i];
 		sortRange(a, aux, 0, a.length - 1);
 	}
 	private static void sortRange(Comparable[] a, Comparable[] aux, int left, int right){
-			if(left < right){
-				int mid = left + (right - left) / 2;
-				sortRange(a, aux, left, mid);
-				sortRange(a, aux, mid + 1, right);
-				merge(a, aux, left, mid, right);
-			}
+			if(right <= left) return;
+			int mid = left + (right - left) / 2;
+			sortRange(aux, a, left, mid);
+			sortRange(aux, a, mid + 1, right);
+			merge(a, aux, left, mid, right);
 	}
 	private static void merge(Comparable[] a, Comparable[] aux, int left, int mid, int right){
 		assert isSorted(a, left, mid);
@@ -25,13 +25,13 @@ public class Merge{
 		int i = left;
 		int j = mid + 1;
 		for(int k = left; k <= right; k++){
-			if(i > mid) a[k] = aux[j++];
-			else if(j > right) a[k] = aux[i++];
-			else if(less(aux[j], aux[i])) a[k] = aux[j++];
-			else a[k] = aux[i++];
+			if(i > mid) aux[k] = a[j++];
+			else if(j > right) aux[k] = a[i++];
+			else if(less(a[j], a[i])) aux[k] = a[j++];
+			else aux[k] = a[i++];
 		}
 
-		assert isSorted(a, left, right);
+		assert isSorted(aux, left, right);
 	}
 	private static boolean less(Comparable u, Comparable v){
 		return u.compareTo(v) < 0;
