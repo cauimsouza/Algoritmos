@@ -17,6 +17,11 @@ public class LinkedStack<Item> implements Iterable<Item>{
 		return n;
 	}
 
+	public Item peek(){
+		if(isEmpty()) return null;
+		return first.item;
+	}
+
 	public void push(Item item){
 		Node oldfirst = first;
 		first = new Node();

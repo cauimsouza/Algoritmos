@@ -16,6 +16,11 @@ public class Stack<Item> implements Iterable<Item>{
 		return N;
 	}
 
+	public Item peek(){
+		if(isEmpty()) return null;
+		return s[N-1];
+	}
+
 	public void push(Item item){
 		if(N == s.length) resize(2 * N);
 		s[N++] = item;
