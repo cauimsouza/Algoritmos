@@ -26,8 +26,8 @@ public class Merge{
 		j = 0;
 		k = left;
 		while(i < l1 && j < l2){
-			if(less(leftArr[i], rightArr[j])) a[k++] = leftArr[i++];
-			else a[k++] = rightArr[j++];
+			if(less(rightArr[j], leftArr[i])) a[k++] = rightArr[j++];
+			else a[k++] = leftArr[i++];
 		}
 		while(i < l1) a[k++] = leftArr[i++];
 		while(j < l2) a[k++] = rightArr[j++];
